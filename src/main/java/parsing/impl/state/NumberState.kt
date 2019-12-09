@@ -4,16 +4,17 @@ import parsing.abs.State
 
 class NumberState : State {
 
-    private val regex = Regex(PATTERN)
-
     override fun validate(prevToken: String, currToken: String, errors: HashSet<String>) {
-        if (!currToken.matches(regex))
-            errors += ERR_MSG
+        if (!currToken.matches(NUMBER))
+            errors += NUM_FORMAT_ERR
+        if (prevToken.matches(WRONG_PREV))
+            errors += WRONG_PREV_ERR
     }
 
     private companion object {
-        const val PATTERN = "\\d+(\\.\\d+)?"
+        val WRONG_PREV = Regex("$NUMBER|$VAR|[)]")
 
-        const val ERR_MSG = "Number may contain only digits and one dot"
+        const val NUM_FORMAT_ERR = "Number may contain only digits and one dot"
+        const val WRONG_PREV_ERR = "Number cannot be placed after another number, variable, or closing scope"
     }
 }

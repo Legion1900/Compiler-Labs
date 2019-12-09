@@ -1,16 +1,18 @@
-package parsing.impl.state
+package parsing.impl.state.operators
 
-import parsing.abs.parser.ParserState
 import parsing.abs.parser.Validator
-import parsing.abs.statemachine.State
-import parsing.abs.statemachine.StateMachine
+import parsing.impl.ParserMachine
+import parsing.impl.state.ParserState
 
 /*
 * Represents simple binary operations such as +, *, /
 * but not -, this one is special.
 * */
-object BinOperation : ParserState(), Validator{
-    override fun transition(machine: StateMachine, prevSymbol: Char?, currSymbol: Char?, nextSymbol: Char?) {
+open class BinOperation : ParserState(), Validator {
+
+    private val operators = listOf('+', '-', '*', '/')
+
+    override fun transition(machine: ParserMachine, prevSymbol: Char?, currSymbol: Char?, nextSymbol: Char?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

@@ -7,7 +7,8 @@ import parsing.abs.statemachine.StateResolver
 import parsing.impl.state.InitState
 
 class ParserMachine(override val resolver: StateResolver) : Parser, StateMachine {
-    override var state: State = InitState
+    override var state: State = InitState()
+    override val errors: Set<String> = HashSet()
 
     override fun parse(exp: String) {
         for (i in exp.indices) {

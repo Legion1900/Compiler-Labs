@@ -1,7 +1,8 @@
-package parsing.abs.parser
+package parsing.impl.state
 
 import parsing.abs.statemachine.State
 import parsing.abs.statemachine.StateMachine
+import parsing.impl.ParserMachine
 
 abstract class ParserState : State {
 
@@ -11,7 +12,7 @@ abstract class ParserState : State {
         transition(machine, args[0] as Char?, args[1] as Char?, args[2] as Char?)
     }
 
-    abstract fun transition(machine: StateMachine, prevSymbol: Char?, currSymbol: Char?, nextSymbol: Char?)
+    abstract fun transition(machine: ParserMachine, prevSymbol: Char?, currSymbol: Char?, nextSymbol: Char?)
 
     companion object {
         private const val ERR_MSG = "You must send exactly two arguments: previous and next symbols."

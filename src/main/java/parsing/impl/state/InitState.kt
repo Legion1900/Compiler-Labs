@@ -1,10 +1,10 @@
 package parsing.impl.state
 
-import parsing.abs.parser.ParserState
 import parsing.abs.statemachine.StateMachine
+import parsing.impl.ParserMachine
 
-object InitState : ParserState() {
-    override fun transition(machine: StateMachine, prevSymbol: Char?, currSymbol: Char?, nextSymbol: Char?) {
+class InitState : ParserState() {
+    override fun transition(machine: ParserMachine, prevSymbol: Char?, currSymbol: Char?, nextSymbol: Char?) {
         machine.run {
             state = resolver.resolveState(nextSymbol)
             state.transition(this, prevSymbol, currSymbol, nextSymbol)

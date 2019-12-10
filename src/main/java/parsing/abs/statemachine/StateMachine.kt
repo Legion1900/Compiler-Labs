@@ -1,4 +1,4 @@
-package parsing.abs
+package parsing.abs.statemachine
 
 interface StateMachine {
     var state: State

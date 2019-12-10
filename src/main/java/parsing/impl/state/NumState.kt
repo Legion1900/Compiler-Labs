@@ -1,6 +1,6 @@
 package parsing.impl.state
 
-import parsing.abs.State
+import parsing.abs.statemachine.State
 
 class NumState : State {
 

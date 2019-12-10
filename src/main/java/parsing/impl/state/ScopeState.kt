@@ -1,6 +1,6 @@
 package parsing.impl.state
 
-import parsing.abs.State
+import parsing.abs.statemachine.State
 
 class ScopeState : State {
     override fun validate(prevToken: String, currToken: String, errors: HashSet<String>) {

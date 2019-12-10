@@ -1,9 +1,10 @@
 import parsing.impl.state.NumState
 import parsing.impl.state.OpState
+import parsing.impl.state.ScopeState
 import parsing.impl.state.VarState
 
 fun main() {
-    testOpPrevious()
+    testClosingScope()
 }
 
 fun testNumberFormat() {
@@ -74,6 +75,30 @@ fun testOpPrevious() {
         print("Previous token: ")
         state.validate(readLine()!!, "-", errors)
         val msg = errors.toList().getOrElse(0) { "OK token" }
+        println(msg)
+    }
+}
+
+fun testOpenScope() {
+    val errors = HashSet<String>()
+    val state = ScopeState()
+    while (true) {
+        errors.clear()
+        print("Previous token: ")
+        state.validate(readLine()!!, "(", errors)
+        val msg = errors.toList().getOrElse(0) { "OK usage" }
+        println(msg)
+    }
+}
+
+fun testClosingScope() {
+    val errors = HashSet<String>()
+    val state = ScopeState()
+    while (true) {
+        errors.clear()
+        print("Previous token: ")
+        state.validate(readLine()!!, ")", errors)
+        val msg = errors.toList().getOrElse(0) { "OK usage" }
         println(msg)
     }
 }

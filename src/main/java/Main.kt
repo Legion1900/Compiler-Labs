@@ -72,7 +72,7 @@ fun testOpPrevious() {
     while (true) {
         errors.clear()
         print("Previous token: ")
-        state.validate(readLine()!!, "+", errors)
+        state.validate(readLine()!!, "-", errors)
         val msg = errors.toList().getOrElse(0) { "OK token" }
         println(msg)
     }

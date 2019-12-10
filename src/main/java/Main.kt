@@ -1,8 +1,9 @@
 import parsing.impl.state.NumState
+import parsing.impl.state.OpState
 import parsing.impl.state.VarState
 
 fun main() {
-    testVarPrevious()
+    testOpPrevious()
 }
 
 fun testNumberFormat() {
@@ -48,6 +49,30 @@ fun testVarPrevious() {
         errors.clear()
         print("Previous token: ")
         state.validate(readLine()!!, "f1", errors)
+        val msg = errors.toList().getOrElse(0) { "OK token" }
+        println(msg)
+    }
+}
+
+fun testOpFormat() {
+    val errors = HashSet<String>()
+    val state = OpState()
+    while (true) {
+        errors.clear()
+        print("Operator: ")
+        state.validate("var", readLine()!!, errors)
+        val msg = errors.toList().getOrElse(0) { "Good operator" }
+        println(msg)
+    }
+}
+
+fun testOpPrevious() {
+    val errors = HashSet<String>()
+    val state = OpState()
+    while (true) {
+        errors.clear()
+        print("Previous token: ")
+        state.validate(readLine()!!, "+", errors)
         val msg = errors.toList().getOrElse(0) { "OK token" }
         println(msg)
     }

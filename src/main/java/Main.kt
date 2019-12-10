@@ -1,10 +1,22 @@
+import parsing.impl.SpacedValidator
 import parsing.impl.state.NumState
 import parsing.impl.state.OpState
 import parsing.impl.state.ScopeState
 import parsing.impl.state.VarState
 
 fun main() {
-    testClosingScope()
+    testValidator()
+}
+
+fun testValidator() {
+    val validator = SpacedValidator()
+    while (true) {
+        print("Expression: ")
+        validator.validate(readLine()!!)
+        for (e in validator.errors)
+            System.err.println(e)
+        validator.errors.clear()
+    }
 }
 
 fun testNumberFormat() {

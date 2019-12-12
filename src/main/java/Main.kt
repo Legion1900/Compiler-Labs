@@ -15,7 +15,7 @@ fun testTreeParser() {
     while (true) {
         print("Expression: ")
         val root = parser.parse(readLine()!!.split(' '))
-        println(TreeNode.inOrderTraversal(root))
+        println(root.toString())
     }
 }
 

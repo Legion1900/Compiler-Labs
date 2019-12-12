@@ -1,3 +1,4 @@
+import parsing.TreeParser
 import validation.impl.SpacedValidator
 import validation.impl.state.NumState
 import validation.impl.state.OpState
@@ -5,7 +6,12 @@ import validation.impl.state.ScopeState
 import validation.impl.state.VarState
 
 fun main() {
-    testValidator()
+    testPostfix()
+}
+
+fun testPostfix() {
+    val parser = TreeParser()
+    parser.parse(readLine()!!.split(' '))
 }
 
 fun testValidator() {

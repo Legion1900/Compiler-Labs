@@ -1,6 +1,4 @@
-package parsing.abs.statemachine
-
-import parsing.abs.statemachine.State
+package validation.abs.statemachine
 
 interface StateResolver {
     fun resolveState(nextSymbol: String): State

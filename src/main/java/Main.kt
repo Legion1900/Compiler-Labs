@@ -1,8 +1,8 @@
-import parsing.impl.SpacedValidator
-import parsing.impl.state.NumState
-import parsing.impl.state.OpState
-import parsing.impl.state.ScopeState
-import parsing.impl.state.VarState
+import validation.impl.SpacedValidator
+import validation.impl.state.NumState
+import validation.impl.state.OpState
+import validation.impl.state.ScopeState
+import validation.impl.state.VarState
 
 fun main() {
     testValidator()

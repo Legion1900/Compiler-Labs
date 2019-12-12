@@ -1,4 +1,4 @@
-package parsing.abs.statemachine
+package validation.abs.statemachine
 
 interface StateMachine {
     var state: State

@@ -1,11 +1,11 @@
-package parsing.impl
+package validation.impl
 
-import parsing.abs.ValidatorMachine
-import parsing.abs.statemachine.State
-import parsing.abs.statemachine.StateResolver
-import parsing.impl.state.EMPTY_SCOPES
-import parsing.impl.state.OpState
-import parsing.impl.state.ScopeState
+import validation.abs.ValidatorMachine
+import validation.abs.statemachine.State
+import validation.abs.statemachine.StateResolver
+import validation.impl.state.EMPTY_SCOPES
+import validation.impl.state.OpState
+import validation.impl.state.ScopeState
 
 class SpacedValidator : ValidatorMachine {
     override lateinit var state: State

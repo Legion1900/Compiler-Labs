@@ -1,6 +1,6 @@
-package parsing.abs
+package validation.abs
 
-import parsing.abs.statemachine.StateMachine
+import validation.abs.statemachine.StateMachine
 
 interface ValidatorMachine : StateMachine{
     val errors: HashSet<String>

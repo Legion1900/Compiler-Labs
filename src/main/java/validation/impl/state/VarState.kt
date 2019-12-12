@@ -1,6 +1,6 @@
-package parsing.impl.state
+package validation.impl.state
 
-import parsing.abs.statemachine.State
+import validation.abs.statemachine.State
 
 class VarState : State {
     override fun validate(prevToken: String, currToken: String, errors: HashSet<String>) {

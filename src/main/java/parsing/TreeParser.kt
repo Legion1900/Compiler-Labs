@@ -1,6 +1,5 @@
 package parsing
 
-import validation.abs.statemachine.StateResolver
 import validation.impl.ExpResolver
 import validation.impl.state.NumState
 import validation.impl.state.OpState
@@ -20,9 +19,22 @@ class TreeParser {
             "/" to 2
     )
 
-    fun parse(tokens: List<String>) {
+    fun parse(tokens: List<String>): TreeNode {
         val postfix = infixToPostfix(tokens)
-        println(postfix)
+        val operands = Stack<TreeNode>()
+        fun resolveOp(token: String) {
+            val right = operands.pop()
+            val left = operands.pop()
+            operands += TreeNode(token, right, left)
+        }
+        for (token in postfix)
+            when (resolver.resolveState(token)) {
+                is NumState -> operands += TreeNode(token)
+                is VarState -> operands += TreeNode(token)
+                is OpState -> resolveOp(token)
+            }
+
+        return operands.pop()
     }
 
     private fun infixToPostfix(tokens: List<String>): List<String> {
@@ -33,6 +45,7 @@ class TreeParser {
                 out += opStack.pop()
             opStack += token
         }
+
         fun resolveScopes(token: String) {
             when (token) {
                 "(" -> opStack += token

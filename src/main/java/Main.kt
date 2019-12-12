@@ -1,3 +1,4 @@
+import parsing.TreeNode
 import parsing.TreeParser
 import validation.impl.SpacedValidator
 import validation.impl.state.NumState
@@ -6,7 +7,16 @@ import validation.impl.state.ScopeState
 import validation.impl.state.VarState
 
 fun main() {
-    testPostfix()
+    testTreeParser()
+}
+
+fun testTreeParser() {
+    val parser = TreeParser()
+    while (true) {
+        print("Expression: ")
+        val root = parser.parse(readLine()!!.split(' '))
+        println(TreeNode.inOrderTraversal(root))
+    }
 }
 
 fun testPostfix() {

@@ -9,3 +9,5 @@ val OP = Regex("[+\\-*/]")
 val SCOPE = Regex("[()]")
 
 val NUM_VAR_SCOPE = Regex("$NUMBER|$VAR|[)]")
+
+val EMPTY_SCOPES = Regex("\\(\\s\\)")

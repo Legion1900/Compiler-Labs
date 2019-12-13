@@ -1,4 +1,4 @@
-import parsing.TreeNode
+import optimization.Optimizer
 import parsing.TreeParser
 import validation.impl.SpacedValidator
 import validation.impl.state.NumState
@@ -7,7 +7,7 @@ import validation.impl.state.ScopeState
 import validation.impl.state.VarState
 
 fun main() {
-    testTreeParser()
+    testOptimizer()
 }
 
 fun testTreeParser() {
@@ -16,6 +16,17 @@ fun testTreeParser() {
         print("Expression: ")
         val root = parser.parse(readLine()!!.split(' '))
         println(root.toString())
+    }
+}
+
+fun testOptimizer() {
+    val opt = Optimizer()
+    val builder = StringBuilder()
+    while (true) {
+        builder.clear()
+        print("Expression: ")
+        opt.optimize(readLine()!!.split(' ')).forEach { builder.append(it) }
+        println(builder.toString())
     }
 }
 

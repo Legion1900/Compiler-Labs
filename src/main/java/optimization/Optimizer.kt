@@ -12,7 +12,6 @@ class Optimizer {
             var optimized = factorOut(sub, "*")
             optimized = factorOut(optimized, "/")
             out += optimized
-            out.removeAt(out.size - 1)
         }
 
         return out
@@ -24,7 +23,6 @@ class Optimizer {
             if (exp[i] == "(") {
                 var j = i
                 while (exp[j] != ")") {
-                    println("$j: ${exp[j]}")
                     j++
                 }
                 scopes += i to j
@@ -66,12 +64,14 @@ class Optimizer {
             exp += op
             exp += operand
         }
+        // Delete common factor inside scope.
         for (positions in common.values) {
-            for (pos in positions) {
+            for (pos in positions.reversed()) {
                 exp.removeAt(pos + 1)
                 exp.removeAt(pos)
             }
         }
+
         return exp
     }
 }

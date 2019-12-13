@@ -36,19 +36,8 @@ class Optimizer {
     * return: Map<operand, List<index of operator occurrence>>
     * */
     private fun factorOut(subExp: List<String>, op: String): List<String> {
-//        val opPositions = mutableListOf<Int>()
-//        val operands = mutableListOf<String>()
-//        val opOccurrence = HashMap<String, Int>()
-//        for (i in subExp.indices)
-//            if (subExp[i] == op) {
-//                opPositions += i
-//                operands += subExp[i + 1]
-//            }
-//        for (o in operands)
-//            if (operands.count { it == o } > 1)
-//
         // Map of <Operands, List<indexes of operators>
-        var occurrences = mutableMapOf<String, MutableList<Int>>()
+        val occurrences = mutableMapOf<String, MutableList<Int>>()
         for (i in subExp.indices)
             if (subExp[i] == op) {
                 val operand = subExp[i + 1]
@@ -58,19 +47,21 @@ class Optimizer {
             }
         val common = occurrences.filter { it.value.size > 1 }
         val exp = mutableListOf<String>()
-        exp.addAll(subExp)
-        // Factor out common operands.
+        val commonOut = mutableListOf<String>()
+        exp += subExp
+        // Building common factor out.
         for (operand in common.keys) {
-            exp += op
-            exp += operand
+            commonOut += op
+            commonOut += operand
         }
         // Delete common factor inside scope.
-        for (positions in common.values) {
-            for (pos in positions.reversed()) {
-                exp.removeAt(pos + 1)
-                exp.removeAt(pos)
-            }
+        val positions = common.flatMap { it.value }.sorted().reversed()
+        for (pos in positions) {
+            exp.removeAt(pos + 1)
+            exp.removeAt(pos)
         }
+        // Appending common factor.
+        exp += commonOut
 
         return exp
     }

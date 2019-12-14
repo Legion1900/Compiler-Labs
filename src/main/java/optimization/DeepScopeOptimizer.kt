@@ -19,6 +19,7 @@ class DeepScopeOptimizer {
             if (exp[i] == "(")
                 opened += i
             if (exp[i] == ")") {
+//                TODO: fix this, doesn't work with couple of scopes on same level
                 scopes[opened.size]?.run {
                     add(opened.pop() to i)
                 } ?: run {

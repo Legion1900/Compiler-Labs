@@ -10,15 +10,6 @@ fun main() {
     testOptimizer()
 }
 
-fun testTreeParser() {
-    val parser = TreeParser()
-    while (true) {
-        print("Expression: ")
-        val root = parser.parse(readLine()!!.split(' '))
-        println(root.toString())
-    }
-}
-
 fun testOptimizer() {
     val opt = Optimizer()
     val builder = StringBuilder()
@@ -31,6 +22,15 @@ fun testOptimizer() {
             println("   $builder")
             builder.clear()
         }
+    }
+}
+
+fun testTreeParser() {
+    val parser = TreeParser()
+    while (true) {
+        print("Expression: ")
+        val root = parser.parse(readLine()!!.split(' '))
+        println(root.toString())
     }
 }
 

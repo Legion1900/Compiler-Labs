@@ -8,10 +8,10 @@ class Optimizer {
         for (s in scopes) {
             out += exp.subList(start, s.first)
             start = s.second + 1
-            val sub = exp.subList(s.first, s.second + 1)
-            var optimized = factorOut(sub, "*")
-            optimized = factorOut(optimized, "/")
-            out += optimized
+            var sub = exp.subList(s.first, s.second + 1)
+            sub = factorOut(sub, "*")
+            sub = factorOut(sub, "/")
+            out += sub
         }
 
         return out

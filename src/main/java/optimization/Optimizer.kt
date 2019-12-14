@@ -1,17 +1,20 @@
 package optimization
 
 class Optimizer {
-    fun optimize(exp: List<String>): List<String> {
+    fun optimize(exp: List<String>): List<List<String>> {
         val scopes = findScopes(exp)
-        val out = mutableListOf<String>()
+        val optimized = mutableListOf<String>()
+        val out = mutableListOf<List<String>>()
         var start = 0
         for (s in scopes) {
-            out += exp.subList(start, s.first)
-            start = s.second
-            val sub = exp.subList(s.first, s.second + 1)
-            var optimized = factorOut(sub, "*")
-            optimized = factorOut(optimized, "/")
-            out += optimized
+            optimized += exp.subList(start, s.first)
+            start = s.second + 1
+            var sub = exp.subList(s.first, s.second + 1)
+            sub = factorOut(sub, "*")
+            sub = factorOut(sub, "/")
+            optimized += sub
+
+            out += optimized + exp.subList(s.second + 1, exp.size)
         }
 
         return out

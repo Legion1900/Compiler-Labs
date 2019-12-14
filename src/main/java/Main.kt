@@ -7,7 +7,19 @@ import validation.impl.state.ScopeState
 import validation.impl.state.VarState
 
 fun main() {
-    testOptimizer()
+    while (true) {
+        print("Expression: ")
+        val exp = Expression(readLine()!!)
+        if (exp.errors.isEmpty()) {
+            println("Expression tree: ")
+            print(exp.tree)
+            println("Alternative forms: ")
+            exp.forms.forEach { tokens ->
+                tokens.forEach { print(it) }
+                println()
+            }
+        } else exp.errors.forEach { System.err.println(it) }
+    }
 }
 
 fun testOptimizer() {

@@ -6,7 +6,9 @@ class DeepScopeOptimizer {
     fun optimize(exp: List<String>): List<String> {
         val scopes = findScopes(exp)
         for (nesting in scopes.keys) {
-            scopes.getValue(nesting).forEach { print("$it ") }
+            println("Depth: $nesting")
+            print("    ")
+            scopes.getValue(nesting).forEach { print("$it, ") }
             println()
         }
         TODO("Finish me")
@@ -20,11 +22,13 @@ class DeepScopeOptimizer {
                 opened += i
             if (exp[i] == ")") {
 //                TODO: fix this, doesn't work with couple of scopes on same level
-                scopes[opened.size]?.run {
-                    add(opened.pop() to i)
-                } ?: run {
-                    val list = mutableListOf(opened.pop() to i)
-                    scopes[opened.size] = list
+                val depth = opened.size
+                val scope = opened.pop() to i
+                if (scopes.containsKey(depth))
+                    scopes.getValue(depth) += scope
+                else {
+                    val list = mutableListOf(scope)
+                    scopes[depth] = list
                 }
             }
         }

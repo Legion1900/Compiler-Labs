@@ -23,10 +23,14 @@ fun testOptimizer() {
     val opt = Optimizer()
     val builder = StringBuilder()
     while (true) {
-        builder.clear()
         print("Expression: ")
-        opt.optimize(readLine()!!.split(' ')).forEach { builder.append(it) }
-        println(builder.toString())
+        val forms = opt.optimize(readLine()!!.split(' '))
+        println("Equivalent forms: ")
+        for (exp in forms) {
+            exp.forEach { builder.append(it) }
+            println("   $builder")
+            builder.clear()
+        }
     }
 }
 
